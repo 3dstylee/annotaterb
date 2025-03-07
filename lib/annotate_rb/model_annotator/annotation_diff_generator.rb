@@ -11,7 +11,13 @@ module AnnotateRb
       #   - "#  status(a/b/c)    :string           not null"
       #   - "#  created_at       :datetime         not null"
       #   - "#  updated_at       :datetime         not null"
-      COLUMN_PATTERN = /^#[\t ]+[\w*.`\[\]():]+(?:\(.*?\))?[\t ]+.+$/
+
+      # Original pattern was excluding the columns with comments containing Japanese characters
+      # see:
+      # COLUMN_PATTERN = /^#[\t ]+[\w*.`\[\]():]+(?:\(.*?\))?[\t ]+.+$/
+
+      # Modified pattern to include columns with comments containing Japanese characters
+      COLUMN_PATTERN = /^#[\t ]+[\w*.`\[\]():]+[\t ]+.+$/
 
       class << self
         def call(file_content, annotation_block)
