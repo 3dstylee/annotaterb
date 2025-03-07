@@ -12,12 +12,11 @@ module AnnotateRb
       #   - "#  created_at       :datetime         not null"
       #   - "#  updated_at       :datetime         not null"
 
-      # Original pattern was excluding the columns with comments containing Japanese characters
+      # Original pattern was excluding the columns with comments containing Japanese characters.
+      # Use \p{Word} instead of \w to include Japanese characters.
       # see:
       # COLUMN_PATTERN = /^#[\t ]+[\w*.`\[\]():]+(?:\(.*?\))?[\t ]+.+$/
-
-      # Modified pattern to include columns with comments containing Japanese characters
-      COLUMN_PATTERN = /^#[\t ]+[\w*.`\[\]():]+[\t ]+.+$/
+      COLUMN_PATTERN = /^#[\t ]+[\p{Word}*.`\[\]():]+(?:\(.*?\))?[\t ]+.+$/
 
       class << self
         def call(file_content, annotation_block)
