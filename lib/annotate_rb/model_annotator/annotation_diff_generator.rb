@@ -14,7 +14,7 @@ module AnnotateRb
 
       # Original pattern was excluding the columns with comments containing Japanese characters.
       # Use \p{Word} instead of \w to include Japanese characters.
-      # see:
+      # see: https://github.com/3dstylee/annotaterb/pull/1/files
       # COLUMN_PATTERN = /^#[\t ]+[\w*.`\[\]():]+(?:\(.*?\))?[\t ]+.+$/
       COLUMN_PATTERN = /^#[\t ]+[\p{Word}*.`\[\]():]+(?:\(.*?\))?[\t ]+.+$/
 
